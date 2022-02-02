@@ -117,17 +117,34 @@ public class DoublyLinkedList implements DLL {
         Scanner sc = new Scanner(System.in);
         DoublyLinkedList List1 = new DoublyLinkedList();
         List1.addAtLast(5);
+        List1.addAtLast(17);
+        List1.addAtLast(16);
+        List1.addAtLast(19);
         List1.addAtLast(4);
         List1.addAtLast(3);
-        List1.addAtLast(2);
+        List1.addAtLast(7);
         List1.addAtLast(1);
-        List1.display(); //5->4->3->2->1->null
-        List1.revDisplay(); //1<-2<-3<-4<-5<-null
-        List1.addAtBeginning(6);
-        List1.display(); //6->5->4->3->2->1->null
-        List1.insert(3,42);
-        List1.display();//6->5->42->4->3->2->1->null
-        List1.delete(42);
-        List1.revDisplay(); //1<-2<-3<-4<-5<-6<-null
+        List1.display();
+        DoublyLinkedList List2 = new DoublyLinkedList();
+        copyPrime(List1,List2);
+        List2.display();
+
+    }
+    public static boolean isPrime(Node isit){
+        if(isit.data==2 || isit.data==1) return true;
+        for(int i=2;i<=(isit.data/2);i++){
+            if(isit.data%i==0)
+                return false;
+        }
+        return true;
+    }
+    public static void copyPrime(DoublyLinkedList List1,DoublyLinkedList List2){
+        Node temp1 = List1.head;
+        while(temp1!=null){
+            if(isPrime(temp1)){
+                List2.addAtLast(temp1.data);
+            }
+            temp1 = temp1.next;
+        }
     }
 }
